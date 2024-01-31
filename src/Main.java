@@ -11,7 +11,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        String filePath = "./data/Dickens_Carol.pdf";
+        String filePath = "./data/pg6130.pdf";
 
         try {
             PDDocument document = Loader.loadPDF(new File(filePath));
