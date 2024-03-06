@@ -1,33 +1,33 @@
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.*;
-
-import java.io.File;
-import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
-
-
     public static void main(String[] args) {
-        String filePath = "./data/pg6130.pdf";
+        Scanner scanner = new Scanner(System.in);
+        PDSearch searcher = new PDSearch();
 
-        try {
-            PDDocument document = Loader.loadPDF(new File(filePath));
+        while (true) {
+            System.out.println("Choose an action:");
+            System.out.println("1. Find something in the PDF");
+            System.out.println("2. Exit");
+            System.out.print("Enter your choice (1/2): ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-            // Instantiate PDFTextStripper class
-            PDFTextStripper pdfStripper = new PDFTextStripper();
-
-            // Retrieving text from PDF document
-            String text = pdfStripper.getText(document);
-            System.out.println(text);
-
-            // Closing the document
-            document.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the path to the PDF: ");
+                    String filePath = scanner.nextLine();
+                    searcher.findTextInPDF(filePath);
+                    break;
+                case 2:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please enter 1, 2");
+                    break;
+            }
         }
     }
-
 }
